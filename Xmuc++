@@ -1,0 +1,79 @@
+#include<iostream>
+#include<stdio.h>
+#include<string.h>
+using namespace std;
+class Record
+{
+	protected:
+		char name[10];
+		bool sex;
+		char identity[18];
+		char birthday[10];
+		char address[20];
+		int age;
+		public:
+			virtual void in();
+			virtual void out();
+			virtual void search();
+};
+class Student : public Record
+{
+	protected:
+		char student_ID[20];
+		char dorm[10];
+		char major[10];
+		int grade;
+	public:
+		Student(){};
+		Student(char tr[],char hr[],char mk[],int g)
+		{
+			strcpy(student_ID,tr);strcpy(dorm,hr);strcpy(major,mk);grade=g;
+		}
+		void in()
+		{
+			cin>>student_ID;
+			cin>>dorm;
+			cin>>major;
+			cin>>grade;
+			FILE *fp;
+			if((fp=fopen("Student.txt",a))==NULL)
+			{cout<<"can not find the file";exit(0);}
+			fprintf(fp,"%s %S %s %d\n",student_ID,dorm,major,grade);
+			fclose(fp);
+		}
+		void out()
+		{
+			FILE *fp;
+			if((fp=fopen("student.txt",r))==NULL)
+			{cout<<"can not find the file";exit(0);}
+			cout<<"请输入记录号:"; 
+			fscanf(fp,"%s %s %s %s")
+		} 
+};
+class Staff //: public Staff
+{
+	protected:
+		char job_number[20];
+		char apartment[10];
+		double work_time ;
+		double salary;
+};
+class Professor :public Staff
+{
+	protected:
+		char teach_major[10];
+		char science[20];
+		int num_of_student;
+};
+class Worker: public Staff
+{
+	protected:
+		char type_of_work[20];
+};
+void menu1
+{
+	int a;
+	cout<<"1.学生"<<endl<<"2.教授"<<endl<<"3.普通员工"<<endl<<"4.退出"<<endl<<"请选择功能号(1-4):"; 
+	cin>>a;
+	
+	
